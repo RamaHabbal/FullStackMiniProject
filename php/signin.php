@@ -3,8 +3,9 @@ include('connection.php');
 
 $data = json_decode(file_get_contents('php://input'),true);
 
-$first_name = $data['first_name'];
-$password = $data['password'];
+
+$first_name = $data['first_name1'];
+$password = $data['password1'];
 
 $query = $mysqli->prepare('select user_id,first_name,last_name,email,password
 from users 
@@ -31,4 +32,7 @@ if ($num_rows == 0) {
         $response['status'] = "wrong password";
     }
 }
+
+header('Content-Type: application/json');
 echo json_encode($response);
+// exit();

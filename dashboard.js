@@ -8,6 +8,6 @@ window.onload = () => {
       welcomeMessage.style.display = "block";
     } else {
       // Redirect to the login page if not logged in
-      window.location.href = "index.html";
+      window.location.href = "dashboard.html";
     }
   };
