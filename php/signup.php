@@ -1,17 +1,19 @@
 <?php
 include('connection.php');
 
+header("Content-Type": "application/json");
+$data = json_decode(file_get_contents('php://input',true));
 
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+$first_name = $data['first_name'];
+$last_name = $data['last_name'];
+$email = $data['email'];
+$password = $data['password'];
 
 $check_first_name = $mysqli->prepare('select first_name from users where first_name=?');
 $check_first_name->bind_param('s', $first_name);
 $check_first_name->execute();
 $check_first_name->store_result();
-$username_exists = $check_username->num_rows();
+$username_exists = $check_first_name->num_rows();
 
 if ($username_exists == 0) {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);

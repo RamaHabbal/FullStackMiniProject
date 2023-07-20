@@ -1,8 +1,11 @@
 <?php
 include('connection.php');
 
-$first_name = $_POST['first_name'];
-$password = $_POST['password'];
+header("Content-Type": "application/json");
+$data = json_decode(file_get_contents('php://input',true));
+
+$first_name = $data['first_name'];
+$password = $data['password'];
 
 $query = $mysqli->prepare('select user_id,first_name,last_name,email,password
 from users 
@@ -20,7 +23,7 @@ if ($num_rows == 0) {
 } else {
     if (password_verify($password, $hashed_password)) {
         $response['status'] = 'logged in';
-        $response['user_id'] = $id;
+        $response['user_id'] = $user_id;
         $response['first_name'] = $first_name;
         $response['last_name'] = $last_name;
     } else {
