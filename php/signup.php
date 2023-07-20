@@ -1,8 +1,7 @@
 <?php
 include('connection.php');
 
-header("Content-Type": "application/json");
-$data = json_decode(file_get_contents('php://input',true));
+$data = json_decode(file_get_contents('php://input'), true);
 
 $first_name = $data['first_name'];
 $last_name = $data['last_name'];

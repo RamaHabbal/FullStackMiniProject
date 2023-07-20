@@ -1,8 +1,7 @@
 <?php
 include('connection.php');
 
-header("Content-Type": "application/json");
-$data = json_decode(file_get_contents('php://input',true));
+$data = json_decode(file_get_contents('php://input'),true);
 
 $first_name = $data['first_name'];
 $password = $data['password'];
@@ -26,6 +25,8 @@ if ($num_rows == 0) {
         $response['user_id'] = $user_id;
         $response['first_name'] = $first_name;
         $response['last_name'] = $last_name;
+        $response['username'] = $first_name;
+
     } else {
         $response['status'] = "wrong password";
     }
