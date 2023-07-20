@@ -35,7 +35,9 @@ window.onload = () => {
     const user = {
       first_name1: first_name,
       password1: password,
+      
     };
+
     console.log(first_name);
     fetch("http://localhost/FullStackMiniProject/php/signin.php", {
       method: "POST",
@@ -46,7 +48,7 @@ window.onload = () => {
     })
       .then((response) => response.json())
       .then((user) => {
-        if (user.staus == "logged in") {
+        if (user.status == "logged in") {
           console.log("User signed in successfully:", user);
           localStorage.setItem("username", first_name);
           window.location.href = "dashboard.html";
@@ -54,6 +56,8 @@ window.onload = () => {
           document.getElementById("firstR").textContent ="User name not found.";
         } else if (user.status == "wrong password") {
           document.getElementById("passR").textContent = "Incorrect password.";
+        }else{
+          console.log("Unknown error occurred during signin.");
         }
       })
       .catch((error) => console.log("Error during signin:", error));
